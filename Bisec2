@@ -1,0 +1,22 @@
+% 1(b) sqrt(2) => x^2 - 2 = 0
+clc; clear;
+f = @(x) x^2 - 2;
+a = 0; b = 2;
+tol = 1e-6;
+fa = f(a);
+
+iter = 0;
+while (b - a)/2 > tol
+    c = (a + b)/2;
+    fc = f(c);
+    if fa*fc <= 0
+        b = c;
+    else
+        a = c;
+        fa = fc;
+    end
+    iter = iter + 1;
+end
+root = (a + b)/2;
+fprintf('sqrt(2) = %.8f\n', root);
+fprintf('Iterations = %d\n', iter);
