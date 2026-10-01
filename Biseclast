@@ -1,0 +1,16 @@
+% Define the function for which we want to find the root
+f = @(x) x^3 - x - 2; 
+
+% Initial interval [a, b] where the sign of f(a) and f(b) are different
+a = 1;
+b = 2;
+
+% Tolerance and maximum iterations
+tol = 1e-10;
+max_iter = 100;
+
+% Call the bisection method
+root = bisection_method(f, a, b, tol, max_iter);
+
+% Display the root
+fprintf('The root is approximately: %f\n', root);
