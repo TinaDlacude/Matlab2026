@@ -1,0 +1,22 @@
+% 1(c) x = x^2 - exp(-x)
+clc; clear;
+f = @(x) x^2 - exp(-x) - x;
+a = 1; b = 2;
+tol = 1e-3;
+fa = f(a);
+iter = 0;
+
+while (b - a)/2 > tol
+    c = (a + b)/2;
+    fc = f(c);
+    if fa*fc <= 0
+        b = c;
+    else
+        a = c;
+        fa = fc;
+    end
+    iter = iter + 1;
+end
+root = (a + b)/2;
+fprintf('Root = %.13f\n', root);
+fprintf('Iterations = %d\n', iter);
