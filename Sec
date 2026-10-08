@@ -1,0 +1,18 @@
+clc; clear;
+f = @(x) exp(x) + 2^(-x) + cos(x) - 6;
+x0 = 1; x1 = 2;
+tol = 1e-10;
+maxIter = 100;
+
+fprintf('Iter\t x0\t\t x1\t\t x2\t\t f(x2)\t\t error\n');
+for i = 1:maxIter
+    f0 = f(x0); f1 = f(x1);
+    x2 = x1 - f1*(x1-x0)/(f1-f0);
+    err = abs(x2-x1);
+    fprintf('%d\t %.10f\t %.10f\t %.10f\t %.4e\t %.4e\n', i, x0, x1, x2, f(x2), err);
+    if err < tol
+        break;
+    end
+    x0 = x1; x1 = x2;
+end
+fprintf('\nRoot = %.13f\n', x2);
